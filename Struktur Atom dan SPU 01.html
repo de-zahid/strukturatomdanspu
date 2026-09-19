@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Struktur Atom & Tabel Periodik Unsur (Fase E)</title>
+    <style>
+	/* Mencegah seleksi teks di seluruh halaman */
+		body {
+    		-webkit-user-select: none; /* Safari */
+    		-moz-user-select: none;    /* Firefox */
+    		-ms-user-select: none;     /* IE 10+ */
+    		user-select: none;         /* Standard */
+		}
+
+	/* Pengecualian agar form input & kalkulator interaktif tetap bisa diisi */
+		input, select, textarea {
+    		-webkit-user-select: text;
+    		-moz-user-select: text;
+    		-ms-user-select: text;
+    		user-select: text;
+		}
+
+        :root {
+            --primary: #0284c7;
+            --primary-dark: #0369a1;
+            --secondary: #0f172a;
+            --accent: #f59e0b;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #334155;
+            --border: #e2e8f0;
+            --success: #16a34a;
+            --danger: #dc2626;
+            --info-bg: #eff6ff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, var(--secondary), #1e293b, var(--primary-dark));
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            position: relative;
+        }
+
+        /* PROFILE GURU PENGAMPU (SUDUT KIRI ATAS) */
+        .teacher-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(6px);
+            padding: 6px 14px 6px 6px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            text-align: left;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .teacher-img {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ffffff;
+            background-color: #cbd5e1;
+        }
+
+        .teacher-details {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .teacher-title {
+            font-size: 0.72rem;
+            opacity: 0.85;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .teacher-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .badge-fase {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            opacity: 0.9;
+            font-size: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* NAVIGATION TABS */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            background: var(--card);
+            border-bottom: 2px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            overflow-x: auto;
+            white-space: nowrap;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .tab-btn {
+            padding: 1rem 1.2rem;
+            border: none;
+            background: none;
+            font-weight: 600;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.2s;
+            border-bottom: 3px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .tab-btn:hover {
+            color: var(--primary);
+            background: #f1f5f9;
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+            background: #f0f9ff;
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            min-height: 70vh;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* CARDS */
+        .card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 1.8rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.03);
+        }
+
+        .card h2 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+        }
+
+        .card h3 {
+            color: var(--primary-dark);
+            margin: 1.2rem 0 0.6rem 0;
+        }
+
+        /* SUB TABS / ACCORDION IN MATERI */
+        .sub-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .sub-btn {
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            background: #fff;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        .sub-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* TABLES */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            border: 1px solid var(--border);
+            padding: 10px 14px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--secondary);
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        /* FORM CONTROLS */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        input[type="number"], select, input[type="text"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border 0.2s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .btn-action {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-action:hover {
+            background: var(--primary-dark);
+        }
+
+        /* NOTASI ATOM VISUALIZER */
+        .notation-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 3.5rem;
+            font-weight: bold;
+            background: var(--info-bg);
+            border: 2px dashed #bfdbfe;
+            border-radius: 12px;
+            padding: 1.5rem;
+            min-height: 140px;
+        }
+
+        .notation-super-sub {
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-right: 4px;
+            text-align: right;
+            line-height: 1.1;
+        }
+
+        .notation-charge {
+            font-size: 1.8rem;
+            vertical-align: super;
+            margin-left: 2px;
+        }
+
+        /* CANVAS BOHR SIMULATOR */
+        #bohrCanvas {
+            background: #0f172a;
+            border-radius: 12px;
+            display: block;
+            margin: 1rem auto;
+            max-width: 100%;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        /* STYLES KALKULATOR MEKANIKA KUANTUM & DIAGRAM ORBITAL */
+        .config-box {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 1.2rem;
+            word-break: break-all;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border);
+        }
+
+        .orbital-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 1rem;
+        }
+
+        .subshell-group {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            padding: 8px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .subshell-title {
+            font-weight: bold;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+
+        .boxes {
+            display: flex;
+            gap: 4px;
+        }
+
+        .orbital-box {
+            width: 36px;
+            height: 42px;
+            border: 2px solid var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+            background: #fff;
+            position: relative;
+        }
+
+        .orbital-m {
+            font-size: 0.65rem;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .qn-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        .qn-card {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            padding: 1rem;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .qn-card .label {
+            font-size: 0.8rem;
+            color: #1e40af;
+        }
+
+        .qn-card .val {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #1e3a8a;
+        }
+
+        /* TREND PERIODIK MAP */
+        .trend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 1rem;
+        }
+
+        .trend-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            background: #fff;
+            transition: transform 0.2s;
+        }
+
+        .trend-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        /* QUIZ & PRACTICE */
+        .quiz-opt {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0.8rem 1rem;
+            margin: 0.5rem 0;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .quiz-opt:hover {
+            background: #f1f5f9;
+        }
+
+        .quiz-opt.correct {
+            background: #dcfce7 !important;
+            border-color: var(--success) !important;
+            color: #14532d;
+            font-weight: 600;
+        }
+
+        .quiz-opt.incorrect {
+            background: #fee2e2 !important;
+            border-color: var(--danger) !important;
+            color: #7f1d1d;
+        }
+
+        .explanation-box {
+            margin-top: 0.8rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-left: 4px solid var(--primary);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .quiz-nav {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .q-num-btn {
+            width: 38px;
+            height: 38px;
+            border: 1px solid var(--border);
+            background: #fff;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .q-num-btn.active {
+            border-color: var(--primary);
+            background: var(--info-bg);
+            color: var(--primary);
+        }
+
+        .q-num-btn.answered {
+            background: #e2e8f0;
+        }
+
+        .score-board {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border-radius: 12px;
+            border: 1px solid #bae6fd;
+            margin-top: 1.5rem;
+        }
+
+        .score-num {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+        }
+
+        .highlight-box {
+            background: #fffbebfb;
+            border: 1px solid #fde68a;
+            border-left: 4px solid var(--accent);
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+        }
+
+        /* FOOTER / FOOTNOTE */
+        footer {
+            background-color: var(--secondary);
+            color: #94a3b8;
+            padding: 1.5rem 1rem;
+            margin-top: 3rem;
+            border-top: 1px solid #334155;
+            font-size: 0.9rem;
+        }
+
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-teacher {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #f1f5f9;
+        }
+
+        .footer-teacher img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid var(--primary);
+            background-color: #475569;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            header {
+                position: static;
+                padding-top: 1.5rem;
+            }
+            .teacher-info {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin: 0 auto 1rem auto;
+                width: fit-content;
+            }
+            header h1 { font-size: 1.5rem; }
+            .tab-btn { padding: 0.8rem; font-size: 0.85rem; }
+            .notation-box { font-size: 2.5rem; }
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+	<!-- TOMBOL FLOATING KENDALI MUSIK LATAR -->
+	 <div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
+    	  <button id="bgmBtn" class="btn-action" style="border-radius: 50px; padding: 12px 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); background: #0284c7; color: white;" onclick="toggleBGM(event)">🎵 Musik Latar: OFF</button></div>
+	<!-- ELEMEN AUDIO BACKGROUND MUSIC -->
+	 <audio id="bgAudio" loop preload="auto" src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"></audio><header>
+        
+	<!-- BADGE GURU PENGAMPU SUDUT KIRI ATAS -->
+         <div class="teacher-info">
+          <img src="alat_kimia/Dedi_Erlangga.jpeg" alt="Dedi Erlangga, S. Pd." class="teacher-img">
+           <div class="teacher-details">
+                <span class="teacher-title">Guru Pengampu</span>
+                <span class="teacher-name">Dedi Erlangga, S. Pd.</span>
+            </div>
+        </div>
+
+        <span class="badge-fase">KURIKULUM MERDEKA - SMA KELAS X (FASE E)</span>
+        <h1>Struktur Atom dan Sistem Periodik Unsur</h1>
+        <p>Struktur Atom dan Perkembangannya, Konfigurasi Elektron, Tabel Periodik Unsur (SPU) dan Sifat Keperiodikan</p>
+    </header>
+
+    <nav class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('tujuan')">🎯 Tujuan Pembelajaran</button>
+        <button class="tab-btn" onclick="switchTab('materi')">📚 Materi Pembelajaran</button>
+        <button class="tab-btn" onclick="switchTab('simulasi')">🔬 Lab & Simulasi</button>
+        <button class="tab-btn" onclick="switchTab('latihan')">✏️ Latihan Soal</button>
+        <button class="tab-btn" onclick="switchTab('evaluasi')">📝 Evaluasi Mandiri</button>
+    </nav>
+
+    <div class="container">
+
+        <!-- TAB 1: TUJUAN PEMBELAJARAN -->
+        <div id="tujuan" class="tab-content active">
+            <div class="card">
+                <h2>🎯 Capaian & Tujuan Pembelajaran (Fase E)</h2>
+                <p>Peserta didik mampu memahami memahami susunan dasar materi dan sifat keperiodikannya.</p>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <h3>1. Struktur Atom & Perkembangannya</h3>
+                    <ul style="padding-left: 1.2rem; margin-top: 0.5rem;">
+                        <li><strong>Mengidentifikasi Partikel Dasar:</strong> Menjelaskan proton (p<sup>+</sup>), neutron (n), dan elektron (e<sup>-</sup>) beserta sifatnya.</li>
+                        <li><strong>Notasi Atom:</strong> Menentukan jumlah proton, elektron, dan neutron pada atom netral dan ion (kation & anion).</li>
+                        <li><strong>Perkembangan Model Atom:</strong> Membandingkan model atom Dalton, Thomson, Rutherford, Bohr, hingga Mekanika Kuantum.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>2. Konfigurasi Elektron & Bilangan Kuantum</h3>
+                    <ul style="padding-left: 1.2rem; margin-top: 0.5rem;">
+                        <li><strong>Konfigurasi Bohr:</strong> Menyusun elektron pada kulit atom utama (K, L, M, N...).</li>
+                        <li><strong>Aturan Mekanika Kuantum:</strong> Memahami Prinsip Aufbau, Azas Larangan Pauli, dan Aturan Hund.</li>
+                        <li><strong>Empat Bilangan Kuantum:</strong> Menentukan nilai n, l, m, dan s untuk elektron terakhir suatu atom.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>3. Tabel Periodik Unsur (SPU) & Sifat Keperiodikan</h3>
+                <ul style="padding-left: 1.2rem; margin-top: 0.5rem;">
+                    <li><strong>Menentukan Letak Unsur:</strong> Menentukan Golongan (kolom) dan Periode (baris) unsur berdasarkan konfigurasi elektronnya.</li>
+                    <li><strong>Menganalisis Sifat Keperiodikan:</strong> Menjelaskan tren keperiodikan: Jari-jari Atom, Energi Ionisasi, Afinitas Elektron, Keelektronegatifan, serta Sifat Logam dan Non-logam.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TAB 2: MATERI PEMBELAJARAN -->
+        <div id="materi" class="tab-content">
+            <div class="sub-nav">
+                <button class="sub-btn active" onclick="switchSubMateri('modul1', this)">Modul 1 - Partikel dan Model Atom</button>
+                <button class="sub-btn" onclick="switchSubMateri('modul2', this)">Modul 2 - Notasi Atom dan Ion</button>
+                <button class="sub-btn" onclick="switchSubMateri('modul3', this)">Modul 3 - Konfigurasi Bohr dan SPU</button>
+                <button class="sub-btn" onclick="switchSubMateri('modul4', this)">Modul 4 - Sifat Keperiodikan</button>
+                <button class="sub-btn" onclick="switchSubMateri('modul5', this)">Modul 5 - Mekanika dan Bilangan Kuantum</button>
+            </div>
+
+            <!-- MODUL 1 -->
+            <div id="modul1" class="sub-materi-content">
+                <div class="card">
+                    <h2>1. Partikel Penyusun Atom</h2>
+                    <p>Atom terdiri atas inti atom (nukleus) yang mengandung proton dan neutron, serta elektron yang bergerak mengelilingi inti.</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Partikel</th>
+                                <th>Lambang</th>
+                                <th>Muatan Relative</th>
+                                <th>Massa (sma)</th>
+                                <th>Penemu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Proton</td>
+                                <td>p<sup>+</sup></td>
+                                <td>+1</td>
+                                <td>1 sma (1,6726 &times; 10<sup>-24</sup> gram)</td>
+                                <td>Eugen Goldstein / Rutherford</td>
+                            </tr>
+                            <tr>
+                                <td>Neutron</td>
+                                <td>n</td>
+                                <td>0 (Netral)</td>
+                                <td>1 sma (1,6749 &times; 10<sup>24</sup> gram)</td>
+                                <td>James Chadwick</td>
+                            </tr>
+                            <tr>
+                                <td>Elektron</td>
+                                <td>e<sup>-</sup></td>
+                                <td>-1</td>
+                                <td>0.00055 sma (9,11 &times; 10<sup>-28</sup> gram)</td>
+                                <td>J.J. Thomson</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h2>2. Perkembangan Teori Model Atom</h2>
+                    <ul style="padding-left: 1.2rem;">
+                        <li style="margin-bottom: 0.8rem;">
+                            <strong>Dalton:</strong> Atom adalah bola pejal bermuatan netral yang merupakan bagian terkecil dan tidak dapat dibagi lagi.
+                        </li>
+                        <li style="margin-bottom: 0.8rem;">
+                            <strong>Thomson (Roti Kismis):</strong> Atom berupa bola pejal bermuatan positif yang di permukaannya tersebar elektron bermuatan negatif.
+                        </li>
+                        <li style="margin-bottom: 0.8rem;">
+                            <strong>Rutherford:</strong> Atom terdiri atas inti atom yang sangat kecil bermuatan positif di pusat, dikelilingi oleh elektron bermuatan negatif pada ruang hampa.
+                        </li>
+                        <li style="margin-bottom: 0.8rem;">
+                            <strong>Niels Bohr:</strong> Elektron mengelilingi inti atom pada lintasan/kulit tertentu dengan tingkat energi stasioner tanpa melepas/menyerap energi.
+                        </li>
+                        <li>
+                            <strong>Mekanika Kuantum:</strong> Kedudukan elektron tidak dapat ditentukan secara pasti, hanya dapat ditentukan kebolehjadian (probabilitas) ditemukannya elektron dalam daerah yang disebut <em>orbital</em>.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- MODUL 2 -->
+            <div id="modul2" class="sub-materi-content" style="display:none;">
+                <div class="card">
+                    <h2>Notasi/Tanda Atom</h2>
+                    <p>Penulisan notasi unsur kimia dirumuskan sebagai berikut:</p>
+                    <div class="notation-box" style="margin: 1rem 0;">
+                        <span class="notation-super-sub">
+                            <span>A</span>
+                            <span>Z</span>
+                        </span>
+                        <span>X</span>
+                        <span class="notation-charge">q</span>
+                    </div>
+                    <ul style="padding-left: 1.2rem;">
+                        <li><strong>X</strong> = Lambang/Simbol Unsur</li>
+                        <li><strong>A</strong> = Nomor Massa = Jumlah Proton (p) + Jumlah Neutron (n)</li>
+                        <li><strong>Z</strong> = Nomor Atom = Jumlah Proton (p)</li>
+                        <li><strong>q</strong> = Muatan Ion (Kation (+) lepas elektron, Anion (-) tangkap elektron)</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <strong>Rumus Penghitungan Partikel:</strong><br>
+                        • <strong>Proton (p)</strong> = Z<br>
+                        • <strong>Neutron (n)</strong> = A - Z<br>
+                        • <strong>Elektron (e)</strong> = Z - q (q = muatan, pada atom netral q=0, maka e = Z)
+                    </div>
+
+                    <h3>Isotop, Isobar, dan Isoton</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Istilah</th>
+                                <th>Ciri Utama</th>
+                                <th>Contoh Pasangan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Isotop</strong></td>
+                                <td>Nomor Atom (Z) sama, Nomor Massa (A) beda</td>
+                                <td><sup>12</sup>C dan <sup>13</sup>C</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Isobar</strong></td>
+                                <td>Nomor Massa (A) sama, Nomor Atom (Z) beda</td>
+                                <td><sub>6</sub><sup>14</sup>C dan <sub>7</sub><sup>14</sup>N</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Isoton</strong></td>
+                                <td>Jumlah Neutron (n = A - Z) sama</td>
+                                <td><sup>39</sup><sub>19</sub>K dan <sup>40</sup><sub>20</sub>Ca</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- MODUL 3 -->
+            <div id="modul3" class="sub-materi-content" style="display:none;">
+                <div class="card">
+                    <h2>Konfigurasi Elektron Bohr & SPU</h2>
+                    <p>Berdasarkan Teori Bohr, elektron terdistribusi pada kulit-kulit utama (K, L, M, N, O, ...). Rumus kapasitas maksimum tiap kulit ke - n adalah:</p>
+                    <div class="highlight-box" style="text-align: center; font-size: 1.2rem; font-weight: bold;">
+                        Jumlah Maksimum Elektron Kulit ke - n = 2n<sup>2</sup>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Kulit (n)</th>
+                                <th>Nama Kulit</th>
+                                <th>Kapasitas Maksimum (2n<sup>2</sup>)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>K</td><td>2(1)<sup>2</sup> = 2 elektron</td></tr>
+                            <tr><td>2</td><td>L</td><td>2(2)<sup>2</sup> = 8 elektron</td></tr>
+                            <tr><td>3</td><td>M</td><td>2(3)<sup>2</sup> = 18 elektron</td></tr>
+                            <tr><td>4</td><td>N</td><td>2(4)<sup>2</sup> = 32 elektron</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Aturan Pengisian Elektron Bohr (Golongan Utama / A)</h3>
+                    <ol style="padding-left: 1.2rem; margin-bottom: 1rem;">
+                        <li>Isi kulit terdalam lebih dahulu sesuai kapasitas maks.</li>
+                        <li>Sisa elektron di kulit terluar disebut <strong>Elektron Valensi (EV)</strong>. Maksimal EV adalah <strong>8 elektron</strong> (Aturan Oktet).</li>
+                    </ol>
+
+                    <h3>Menentukan Golongan & Periode SPU</h3>
+                    <div class="grid-2">
+                        <div class="highlight-box">
+                            <strong>Periode</strong> = Jumlah kulit yang terisi elektron.<br>
+                            <em>Contoh:</em> Na (2, 8, 1) - 3 kulit terisi <strong>Periode 3</strong>.
+                        </div>
+                        <div class="highlight-box">
+                            <strong>Golongan Utama (A)</strong> = Jumlah Elektron Valensi.<br>
+                            <em>Contoh:</em> Na (2, 8, 1) - EV = 1 - <strong>Golongan IA</strong>.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODUL 4 -->
+            <div id="modul4" class="sub-materi-content" style="display:none;">
+                <div class="card">
+                    <h2>Sifat Keperiodikan Unsur</h2>
+                    <p>Sifat keperiodikan adalah sifat-sifat unsur yang berubah secara teratur sesuai dengan kenaikan nomor atom dalam Tabel Periodik Unsur.</p>
+
+                    <div class="trend-grid">
+                        <div class="trend-card">
+                            <h3 style="color:var(--primary)">1. Jari-Jari Atom</h3>
+                            <p>Jarak dari inti atom hingga kulit terluar.</p>
+                            <hr style="margin: 0.5rem 0;">
+                            <small>• <strong>Satu Golongan (dari Atas ke Bawah):</strong> MAKIN BESAR (kulit bertambah).<br>
+                            • <strong>Satu Periode (dari Kiri ke Kanan):</strong> MAKIN KECIL (muatan inti makin kuat menarik elektron).</small>
+                        </div>
+
+                        <div class="trend-card">
+                            <h3 style="color:var(--primary)">2. Energi Ionisasi</h3>
+                            <p>Energi minimum untuk melepaskan 1 elektron valensi terluar.</p>
+                            <hr style="margin: 0.5rem 0;">
+                            <small>• <strong>dari Atas ke Bawah:</strong> MAKIN KECIL (mudah lepas).<br>
+                            • <strong>dari Kiri ke Kanan:</strong> MAKIN BESAR (sulit lepas).</small>
+                        </div>
+
+                        <div class="trend-card">
+                            <h3 style="color:var(--primary)">3. Keelektronegatifan</h3>
+                            <p>Kecenderungan atom menarik elektron dalam ikatan kimia.</p>
+                            <hr style="margin: 0.5rem 0;">
+                            <small>• <strong>dari Atas ke Bawah:</strong> MAKIN KECIL.<br>
+                            • <strong>dari Kiri ke Kanan:</strong> MAKIN BESAR (Fluorin/F adalah terkuat).</small>
+                        </div>
+
+                        <div class="trend-card">
+                            <h3 style="color:var(--primary)">4. Afinitas Elektron</h3>
+                            <p>Perubahan energi ketika atom menangkap 1 elektron.</p>
+                            <hr style="margin: 0.5rem 0;">
+                            <small>• <strong>dari Atas ke Bawah:</strong> MAKIN KECIL.<br>
+                            • <strong>dari Kiri ke Kanan:</strong> MAKIN BESAR.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODUL 5: MEKANIKA KUANTUM -->
+            <div id="modul5" class="sub-materi-content" style="display:none;">
+                <div class="card">
+                    <h2>1. Prinsip Aufbau</h2>
+                    <p>Elektron mengisi orbital dimulai dari tingkat energi yang paling rendah ke tingkat energi yang lebih tinggi.</p>
+                    <div class="highlight-box" style="font-family: monospace; font-size: 1.05rem; word-break: break-all;">
+                        1s → 2s → 2p → 3s → 3p → 4s → 3d → 4p → 5s → 4d → 5p → 6s → 4f → 5d → 6p → 7s → 5f → 6d → 7p
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>2. Azas Larangan Pauli</h2>
+                    <p>Tidak ada dua elektron dalam satu atom yang boleh memiliki keempat bilangan kuantum (n, l, m, s) yang identik. Setiap orbital hanya mampu menampung maksimal <strong>2 elektron</strong> dengan arah spin yang berlawanan (&uarr; dan &darr;).</p>
+                </div>
+
+                <div class="card">
+                    <h2>3. Aturan Hund</h2>
+                    <p>Pengisian elektron pada orbital-orbital yang bernilai energi sama (subkulit p, d, f) dilakukan secara <strong>sendiri-sendiri dengan spin paralel (sejajar)</strong> terlebih dahulu sebelum elektron-elektron tersebut berpasangan.</p>
+                </div>
+
+                <div class="card">
+                    <h2>4. Empat Bilangan Kuantum</h2>
+                    <ul style="padding-left: 1.2rem;">
+                        <li style="margin-bottom:0.6rem;"><strong>n (Utama):</strong> Menentukan nomor kulit atom ($n = 1, 2, 3, ...).</li>
+                        <li style="margin-bottom:0.6rem;"><strong>l (Azimut):</strong> Menentukan subkulit. Nilai subkulit: s=0, p=1, d=2, f=3.</li>
+                        <li style="margin-bottom:0.6rem;"><strong>m (Magnetik):</strong> Orientasi orbital di ruang. Berada pada rentang -l sampai +l.</li>
+                        <li style="margin-bottom:0.6rem;"><strong>s (Spin):</strong> Arah putaran elektron pada porosnya. Berharga +1/2 (&uarr;) atau -1/2 (&darr;).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: LAB & SIMULASI -->
+        <div id="simulasi" class="tab-content">
+            
+            <!-- SIMULASI 1: KALKULATOR NOTASI ATOM -->
+            <div class="card">
+                <h2>🔬 Kalkulator Partikel Notasi Atom & Ion</h2>
+                <div class="grid-2">
+                    <div>
+                        <div class="form-group">
+                            <label>Nama / Simbol Unsur:</label>
+                            <input type="text" id="simSymbol" value="Cl" placeholder="Contoh: Na, Cl, Fe">
+                        </div>
+                        <div class="form-group">
+                            <label>Nomor Atom (Z = Proton):</label>
+                            <input type="number" id="simZ" value="17" min="1" max="118">
+                        </div>
+                        <div class="form-group">
+                            <label>Nomor Massa (A = Proton + Neutron):</label>
+                            <input type="number" id="simA" value="35" min="1" max="300">
+                        </div>
+                        <div class="form-group">
+                            <label>Muatan Ion (q):</label>
+                            <select id="simCharge">
+                                <option value="0">Netral (0)</option>
+                                <option value="-1">Anion (-1)</option>
+                                <option value="-2">Anion (-2)</option>
+                                <option value="+1">Kation (+1)</option>
+                                <option value="+2">Kation (+2)</option>
+                                <option value="+3">Kation (+3)</option>
+                            </select>
+                        </div>
+                        <button class="btn-action" onclick="updateNotation()">Hitung Partikel</button>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <label style="font-weight: bold; display: block; margin-bottom: 5px;">Visualisasi Notasi Atom:</label>
+                        <div class="notation-box" id="notationDisplay">
+                            <span class="notation-super-sub">
+                                <span id="dispA">35</span>
+                                <span id="dispZ">17</span>
+                            </span>
+                            <span id="dispSymbol">Cl</span>
+                            <span class="notation-charge" id="dispCharge">-</span>
+                        </div>
+
+                        <div class="grid-2" style="margin-top:1rem; text-align: left;">
+                            <div class="highlight-box" style="margin:0;">
+                                <strong>Proton (p):</strong> <span id="resP" style="font-size:1.2rem; font-weight:bold; color:var(--primary)">17</span><br>
+                                <strong>Neutron (n):</strong> <span id="resN" style="font-size:1.2rem; font-weight:bold; color:var(--accent)">18</span><br>
+                                <strong>Elektron (e):</strong> <span id="resE" style="font-size:1.2rem; font-weight:bold; color:var(--success)">18</span>
+                            </div>
+                            <div class="highlight-box" style="margin:0; background:#f0fdf4; border-color:#bbf7d0;">
+                                <strong>Status:</strong> <span id="resStatus">Anion (Bermuatan Negatif)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SIMULASI 2: SIMULATOR ATOM BOHR -->
+            <div class="card">
+                <h2>⚛️ Simulator Atom Bohr & Penentu SPU Interaktif</h2>
+                <p>Pilih atau masukkan nomor atom untuk melihat gambaran lintasan elektron Bohr dan menentukan letak unsur dalam Tabel Periodik Unsur.</p>
+                
+                <div class="grid-2" style="margin: 1rem 0;">
+                    <div>
+                        <div class="form-group">
+                            <label>Pilih Unsur (Z = 1 s.d. 36):</label>
+                            <select id="bohrSelect" onchange="loadBohrFromSelect()">
+                                <option value="1">1 - Hidrogen (H)</option>
+                                <option value="2">2 - Helium (He)</option>
+                                <option value="6">6 - Karbon (C)</option>
+                                <option value="8">8 - Oksigen (O)</option>
+                                <option value="11" selected>11 - Natrium (Na)</option>
+                                <option value="12">12 - Magnesium (Mg)</option>
+                                <option value="17">17 - Klorin (Cl)</option>
+                                <option value="19">19 - Kalium (K)</option>
+                                <option value="20">20 - Kalsium (Ca)</option>
+                                <option value="35">35 - Bromin (Br)</option>
+                                <option value="36">36 - Kripton (Kr)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Atau Masukkan Nomor Atom (Z):</label>
+                            <input type="number" id="bohrZInput" value="11" min="1" max="56">
+                        </div>
+                        <button class="btn-action" onclick="renderBohrAtom()">Simulasikan Model Atom Bohr</button>
+                    </div>
+
+                    <div>
+                        <div class="highlight-box">
+                            <strong>Konfigurasi Elektron Bohr:</strong><br>
+                            <span id="bohrConfigStr" style="font-size:1.3rem; font-weight:bold; color:var(--primary)">2, 8, 1</span>
+                        </div>
+                        <div class="highlight-box" style="background:#f0f9ff; border-color:#bae6fd;">
+                            <strong>Elektron Valensi (EV):</strong> <span id="bohrEV" style="font-weight:bold">1</span><br>
+                            <strong>Jumlah Kulit Terisi:</strong> <span id="bohrShells" style="font-weight:bold">3</span><br>
+                            <strong>Golongan SPU:</strong> <span id="bohrGol" style="font-weight:bold; color:var(--primary-dark)">IA</span><br>
+                            <strong>Periode SPU:</strong> <span id="bohrPer" style="font-weight:bold; color:var(--primary-dark)">3</span>
+                        </div>
+                    </div>
+                </div>
+
+                <canvas id="bohrCanvas" width="400" height="400"></canvas>
+            </div>
+
+            <!-- SIMULASI 3: KALKULATOR KONFIGURASI ELEKTRON MEKANIKA KUANTUM & BILANGAN KUANTUM -->
+            <div class="card">
+                <h2>⚡ Kalkulator Konfigurasi Elektron Subkulit & Bilangan Kuantum</h2>
+                <p style="margin-bottom: 1rem;">Masukkan nomor atom (Z = 1 - 118) untuk melihat konfigurasi elektron mekanika kuantum, visualisasi diagram orbital pengisian elektron, dan 4 bilangan kuantum elektron terakhir.</p>
+                <div class="form-group" style="display: flex; gap: 10px; max-width: 500px;">
+                    <input type="number" id="atomicNum" min="1" max="118" value="16" placeholder="Masukkan Nomor Atom (misal: 16)">
+                    <button class="btn-action" onclick="calculateAtom()">Hitung & Visualisasikan</button>
+                </div>
+
+                <div id="results" style="display:none; margin-top: 1.5rem;">
+                    <h3>Konfigurasi Elektron Lengkap Subkulit:</h3>
+                    <div class="config-box" id="configText"></div>
+
+                    <h3>Empat Bilangan Kuantum Elektron Terakhir:</h3>
+                    <div class="qn-grid">
+                        <div class="qn-card"><div class="label">Utama (n)</div><div class="val" id="qn-n">-</div></div>
+                        <div class="qn-card"><div class="label">Azimut (l)</div><div class="val" id="qn-l">-</div></div>
+                        <div class="qn-card"><div class="label">Magnetik (m)</div><div class="val" id="qn-m">-</div></div>
+                        <div class="qn-card"><div class="label">Spin (s)</div><div class="val" id="qn-s">-</div></div>
+                    </div>
+
+                    <h3 style="margin-top: 1.5rem;">Diagram Orbital Pengisian Elektron:</h3>
+                    <div class="orbital-container" id="orbitalDiagram"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- TAB 4: LATIHAN SOAL INTERAKTIF -->
+        <div id="latihan" class="tab-content">
+            <div class="card">
+                <h2>✏️ Latihan Soal Interaktif Berpetunjuk</h2>
+                <p>Jawablah soal-soal berikut. Gunakan tombol "Petunjuk" jika Anda memerlukan bantuan langkah pengerjaan.</p>
+
+                <!-- SOAL LATIHAN 1 -->
+                <div style="margin-top: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem;">
+                    <h3>Soal 1: Partikel Ion</h3>
+                    <p>Diketahui kation magnesium <sup>24</sup><sub>12</sub>Mg<sup>2+</sup>. Jumlah proton, neutron, dan elektron secara berurutan adalah...</p>
+                    <button class="quiz-opt" onclick="checkPractice(1, 'A', this)">A. 12, 12, 12</button>
+                    <button class="quiz-opt" onclick="checkPractice(1, 'B', this)">B. 12, 12, 10</button>
+                    <button class="quiz-opt" onclick="checkPractice(1, 'C', this)">C. 12, 10, 12</button>
+                    <button class="quiz-opt" onclick="checkPractice(1, 'D', this)">D. 10, 12, 12</button>
+                    <button class="btn-action" style="background:#64748b; margin-top:5px; font-size:0.85rem;" onclick="toggleHint('hint1')">💡 Petunjuk</button>
+                    <div id="hint1" class="highlight-box" style="display:none; margin-top:8px;">
+                        Kation $+2$ artinya atom melepas 2 elektron. Proton = Z, Neutron = A - Z, Elektron = Z - (+2).
+                    </div>
+                    <div id="prac-exp-1" class="explanation-box"></div>
+                </div>
+
+                <!-- SOAL LATIHAN 2 -->
+                <div style="margin-top: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem;">
+                    <h3>Soal 2: Konfigurasi Elektron Bohr</h3>
+                    <p>Konfigurasi elektron menurut Niels Bohr untuk unsur Kalsium (<sup>40</sup><sub>20</sub>Ca) adalah...</p>
+                    <button class="quiz-opt" onclick="checkPractice(2, 'A', this)">A. 2, 8, 10</button>
+                    <button class="quiz-opt" onclick="checkPractice(2, 'B', this)">B. 2, 18</button>
+                    <button class="quiz-opt" onclick="checkPractice(2, 'C', this)">C. 2, 8, 8, 2</button>
+                    <button class="quiz-opt" onclick="checkPractice(2, 'D', this)">D. 2, 8, 9, 1</button>
+                    <button class="btn-action" style="background:#64748b; margin-top:5px; font-size:0.85rem;" onclick="toggleHint('hint2')">💡 Petunjuk</button>
+                    <div id="hint2" class="highlight-box" style="display:none; margin-top:8px;">
+                        Elektron valensi maksimal di kulit terluar adalah 8. Untuk Z=20: Kulit K=2, L=8, M=8, sisa 2 di N.
+                    </div>
+                    <div id="prac-exp-2" class="explanation-box"></div>
+                </div>
+
+                <!-- SOAL LATIHAN 3 -->
+                <div style="margin-top: 1.5rem; padding-bottom: 1.5rem;">
+                    <h3>Soal 3: Sifat Keperiodikan</h3>
+                    <p>Di antara unsur <sup>11</sup>Na dan <sup>17</sup>Cl yang berada dalam satu periode (Periode 3), pernyataan yang BENAR adalah...</p>
+                    <button class="quiz-opt" onclick="checkPractice(3, 'A', this)">A. Jari-jari atom Na lebih kecil daripada Cl</button>
+                    <button class="quiz-opt" onclick="checkPractice(3, 'B', this)">B. Energi ionisasi Na lebih besar daripada Cl</button>
+                    <button class="quiz-opt" onclick="checkPractice(3, 'C', this)">C. Jari-jari atom Na lebih besar daripada Cl</button>
+                    <button class="quiz-opt" onclick="checkPractice(3, 'D', this)">D. Keelektronegatifan Na lebih besar daripada Cl</button>
+                    <button class="btn-action" style="background:#64748b; margin-top:5px; font-size:0.85rem;" onclick="toggleHint('hint3')">💡 Petunjuk</button>
+                    <div id="hint3" class="highlight-box" style="display:none; margin-top:8px;">
+                        Dalam satu periode dari kiri ke kanan (Na ke Cl): Muatan inti bertambah kuat sehingga menarik elektron lebih dekat $\rightarrow$ Jari-jari atom makin kecil.
+                    </div>
+                    <div id="prac-exp-3" class="explanation-box"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TAB 5: EVALUASI MANDIRI -->
+        <div id="evaluasi" class="tab-content">
+            <div class="card">
+                <h2>📝 Evaluasi Mandiri Kuis Interaktif</h2>
+                <p>Uji pemahaman Anda melalui 10 soal evaluasi berikut. Klik tombol "Selesai & Kumpulkan" di akhir untuk melihat skor dan hasil analisis Anda.</p>
+
+                <div class="quiz-nav" id="quizNavButtons"></div>
+
+                <div id="quizContainer">
+                    <!-- QUIZ QUESTIONS DYNAMICALLY RENDERED HERE -->
+                </div>
+
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <button class="btn-action" style="font-size:1.1rem; padding: 0.9rem 2rem;" onclick="submitQuiz()">Selesai & Kumpulkan Kuis</button>
+                </div>
+
+                <div id="scoreBoard" class="score-board" style="display:none;">
+                    <h3>Hasil Evaluasi Anda</h3>
+                    <div class="score-num" id="finalScoreDisplay">0</div>
+                    <p id="scoreMsg" style="font-weight: 600; font-size: 1.1rem; margin-top:0.5rem;"></p>
+                    <button class="btn-action" style="margin-top: 1rem;" onclick="resetQuiz()">Ulangi Evaluasi</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTNOTE / FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-teacher">
+                <img src="alat_kimia/Dedi_Erlangga.jpeg" alt="Dedi Erlangga, S. Pd.">
+                <div>
+                    <strong>Guru Pengampu -</strong> Dedi Erlangga, S. Pd.
+                </div>
+            </div>
+            <p>&copy; 2026 Modul Simulasi & Pembelajaran Interaktif Kimia Phase E.</p>
+        </div>
+    </footer>
+   <script>
+	const _0x193b46=_0x1bc4;(function(_0xe71031,_0x58703a){const _0x2b2730=_0x1bc4,_0x5e8cbd=_0xe71031();while(!![]){try{const _0x327e07=parseInt(_0x2b2730(0x1c4))/0x1*(-parseInt(_0x2b2730(0x197))/0x2)+parseInt(_0x2b2730(0x1a8))/0x3+parseInt(_0x2b2730(0x23c))/0x4+-parseInt(_0x2b2730(0x241))/0x5*(-parseInt(_0x2b2730(0x19b))/0x6)+parseInt(_0x2b2730(0x1cc))/0x7+-parseInt(_0x2b2730(0x209))/0x8*(-parseInt(_0x2b2730(0x225))/0x9)+parseInt(_0x2b2730(0x1e3))/0xa*(-parseInt(_0x2b2730(0x239))/0xb);if(_0x327e07===_0x58703a)break;else _0x5e8cbd['push'](_0x5e8cbd['shift']());}catch(_0x9119e8){_0x5e8cbd['push'](_0x5e8cbd['shift']());}}}(_0x8235,0xc44f5));function _0x8235(){const _0xb0452a=['font','add','ctrlKey','value','4399620GgVXzI','Di\x20antara\x20unsur\x20berikut,\x20yang\x20memiliki\x20jumlah\x20elektron\x20valensi\x20terbanyak\x20adalah...','Unsur\x20yang\x20memiliki\x20konfigurasi\x20elektron\x20Bohr:\x202,\x208,\x207\x20terletak\x20pada\x20Golongan\x20dan\x20Periode...','max','cos','beginPath','join','bold\x2013px\x20sans-serif','bohrEV','currentTime','Makin\x20kecil','push','Kation\x20(Bermuatan\x20+','resN','borderColor','Autoplay\x20diblokir\x20browser:','J.J.\x20Thomson\x20mengemukakan\x20model\x20atom\x20roti\x20kismis\x20setelah\x20menemukan\x20elektron.','target','qn-s','Kiri\x20Bawah','#38bdf8','dispA','fromCharCode','10px\x20sans-serif','addEventListener','qn-n','results','stopPropagation','1PqCrgj','VIII','resP','connect','Atom\x20Cl\x20bermuatan\x20-1\x20(anion)\x20artinya\x20menangkap\x201\x20elektron.\x20Jumlah\x20elektron\x20=\x20Z\x20+\x201\x20=\x2017\x20+\x201\x20=\x2018.','now','bohrCanvas','Cukup\x20Baik.\x20Pelajari\x20kembali\x20beberapa\x20modul\x20yang\x20masih\x20belum\x20dikuasai.','2955883aKKdrl','VII','bohrPer','Pasangan\x20unsur\x20<sup>12</sup><sub>6</sub>C\x20dan\x20<sup>14</sup><sub>6</sub>C\x20dinamakan...','block','sub','<strong>Belum\x20Tepat.</strong>\x20','#f87171','width','scoreBoard','log','🔊\x20Musik\x20Latar:\x20ON','bgAudio','setValueAtTime','resume','Ernest\x20Rutherford','lineWidth','<strong>Jawaban\x20Anda\x20Benar!\x20🎉</strong><br>','arc','onload','querySelectorAll','createOscillator','Proton\x20adalah\x20partikel\x20bermuatan\x20positif\x20(+1)\x20yang\x20terletak\x20di\x20inti\x20atom.','29296130auRbMQ','+1/2','Konfigurasi\x20elektron\x20Bohr\x20untuk\x20unsur\x20Kalium\x20<sup>19</sup>K\x20adalah...','qexp-','Dalam\x20satu\x20periode\x20dari\x20kiri\x20ke\x20kanan\x20(Na\x20ke\x20Cl),\x20muatan\x20inti\x20makin\x20besar\x20sehingga\x20gaya\x20tarik\x20inti\x20ke\x20elektron\x20makin\x20kuat,\x20menyebabkan\x20jari-jari\x20atom\x20makin\x20kecil.\x20Jadi,\x20Na\x20memiliki\x20jari-jari\x20atom\x20lebih\x20besar\x20dibanding\x20Cl.','qcard-','debugger','Proton','</div><div\x20class=\x22boxes\x22>','className','quizContainer','qbtn-','map','#ef4444','#ffffff','quizNavButtons','div','exp','preventDefault','.sub-btn','middle','<button\x20class=\x22quiz-opt\x22\x20onclick=\x22selectQuizOpt(','exponentialRampToValueAtTime','John\x20Dalton','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>Soal\x20Evaluasi\x20','scrollTo','AudioContext','.sub-materi-content','play','incorrect','cap','simZ','Isotop','Sebuah\x20atom\x20netral\x20memiliki\x20Nomor\x20Atom\x20(Z)\x20=\x2015\x20dan\x20Nomor\x20Massa\x20(A)\x20=\x2031.\x20Jumlah\x20neutron\x20dalam\x20atom\x20tersebut\x20adalah...','Golongan\x20VIIA,\x20Periode\x203','qn-l','opts','fillText','8yApwvH','Makin\x20tidak\x20teratur','frequency','Isoton','2,\x2017','scoreMsg','display','forEach','suspended','Makin\x20besar','setLineDash','simCharge','none','parentElement','boxes','#0284c7','smooth','card','qn-m','getContext','</div></div>','Anion\x20(Bermuatan\x20','q-num-btn','center','Golongan\x20IIA,\x20Periode\x208','Isotop\x20adalah\x20unsur-unsur\x20yang\x20memiliki\x20Nomor\x20Atom\x20(Z)\x20sama\x20tetapi\x20Nomor\x20Massa\x20(A)\x20berbeda.','keyCode','length','14220513LStWja','remove','Positron','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20id=\x22qexp-','Isosfer','clearRect','backgroundColor','</sup>','stop','resE','reload','.quiz-opt','then','<sup>12</sup>Mg\x20(2,8,2)','background','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>','appendChild','correct','disabled','Tengah\x20(Logam\x20Transisi)','11ENyQAk','Model\x20atom\x20yang\x20menggambarkan\x20elektron\x20tersebar\x20di\x20dalam\x20bola\x20bermuatan\x20positif\x20seperti\x20\x27roti\x20kismis\x27\x20dikemukakan\x20oleh...','innerText','1453380pQmOvp','contextmenu','stroke','gain','offsetTop','77320pJJcQP','\x20active','classList','innerHTML','<div><div\x20class=\x22orbital-box\x22>','ans','shiftKey','<sup>16</sup>S\x20(2,8,6)','\x20dari\x2010</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20style=\x22font-size:1.05rem;\x20margin-bottom:1rem;\x22>','Sesuai\x20aturan\x20Bohr:\x20K=2,\x20L=8,\x20M=8,\x20N=1.\x20Jumlah\x20elektron\x20valensi\x20=\x201.','answered','Keelektronegatifan\x20makin\x20besar\x20ke\x20kanan\x20dan\x20ke\x20atas.\x20Unsur\x20paling\x20elektronegatif\x20adalah\x20Fluorin\x20(F)\x20di\x20kanan\x20atas.','Neutron','destination','strokeStyle','button',',\x20this)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','Golongan\x20IIIA,\x20Periode\x207','bohrShells','volume','fill','atomicNum','.tab-btn','Partikel\x20dasar\x20penyusun\x20atom\x20yang\x20bermuatan\x20positif\x20dan\x20berada\x20di\x20dalam\x20inti\x20atom\x20adalah...','bohrZInput','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>','Silakan\x20klik\x20tombol\x20sekali\x20lagi\x20untuk\x20memutar\x20musik\x20latar.','Sangat\x20Baik!\x20Anda\x20telah\x20menguasai\x20materi\x20Struktur\x20Atom\x20&\x20Tabel\x20Periodik\x20Unsur\x20(Fase\x20E).','sine','getElementById','</div><div\x20class=\x22orbital-m\x22>','Jumlah\x20elektron\x20valensi\x20=\x207\x20(Golongan\x20VIIA);\x20Jumlah\x20kulit\x20terisi\x20=\x203\x20(K,\x20L,\x20M)\x20->\x20Periode\x203.','dispCharge','min','<sup>','<strong>Benar!\x20🎉</strong>\x20','dispSymbol','#e0f2fe','active','Perlu\x20Peningkatan.\x20Silakan\x20pelajari\x20kembali\x20modul\x20materi\x20dan\x20jalankan\x20simulasi\x20interaktif.','name','Golongan\x20VIIA,\x20Periode\x202','click','location','2918690qDfbUA','Kanan\x20Atas\x20(Fluorin)','Elektron','🎵\x20Musik\x20Latar:\x20OFF','528fZFGcU','<sup>11</sup>Na\x20(2,8,1)','Jumlah\x20neutron\x20=\x20Nomor\x20Massa\x20(A)\x20-\x20Nomor\x20Atom\x20(Z)\x20=\x2031\x20-\x2015\x20=\x2016.','createElement','copy','style','\x22\x20class=\x22explanation-box\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','fillStyle','bohrGol'];_0x8235=function(){return _0xb0452a;};return _0x8235();}let audioCtx=null;function initAudioContext(){const _0x5ddda2=_0x1bc4;!audioCtx&&(audioCtx=new(window[(_0x5ddda2(0x1fd))]||window['webkitAudioContext'])()),audioCtx['state']===_0x5ddda2(0x211)&&audioCtx[_0x5ddda2(0x1da)]();}function playClickSound(){const _0x3ca551=_0x1bc4;try{initAudioContext();const _0x30f5ca=audioCtx[_0x3ca551(0x1e1)](),_0x31c1dc=audioCtx['createGain']();_0x30f5ca['type']=_0x3ca551(0x25d),_0x30f5ca[_0x3ca551(0x20b)][_0x3ca551(0x1d9)](0x320,audioCtx[_0x3ca551(0x1b1)]),_0x30f5ca['frequency']['exponentialRampToValueAtTime'](0x12c,audioCtx[_0x3ca551(0x1b1)]+0.05),_0x31c1dc[_0x3ca551(0x23f)][_0x3ca551(0x1d9)](0.15,audioCtx[_0x3ca551(0x1b1)]),_0x31c1dc[_0x3ca551(0x23f)][_0x3ca551(0x1f9)](0.001,audioCtx[_0x3ca551(0x1b1)]+0.05),_0x30f5ca['connect'](_0x31c1dc),_0x31c1dc[_0x3ca551(0x1c7)](audioCtx[_0x3ca551(0x24e)]),_0x30f5ca['start'](),_0x30f5ca[_0x3ca551(0x22d)](audioCtx[_0x3ca551(0x1b1)]+0.05);}catch(_0x4d0493){console[_0x3ca551(0x1d6)]('Audio\x20error:',_0x4d0493);}}document[_0x193b46(0x1c0)](_0x193b46(0x195),function(){playClickSound();});function _0x1bc4(_0x27728e,_0x152920){_0x27728e=_0x27728e-0x18b;const _0x82358f=_0x8235();let _0x1bc4aa=_0x82358f[_0x27728e];return _0x1bc4aa;}let isBgmPlaying=![];function toggleBGM(_0x50cf74){const _0x20d198=_0x193b46;if(_0x50cf74)_0x50cf74[_0x20d198(0x1c3)]();initAudioContext();const _0x499b0b=document[_0x20d198(0x25e)](_0x20d198(0x1d8)),_0x5c2a55=document[_0x20d198(0x25e)]('bgmBtn');if(!_0x499b0b)return;isBgmPlaying?(_0x499b0b['pause'](),isBgmPlaying=![],_0x5c2a55[_0x20d198(0x244)]=_0x20d198(0x19a),_0x5c2a55[_0x20d198(0x1a0)][_0x20d198(0x233)]=_0x20d198(0x218)):(_0x499b0b[_0x20d198(0x254)]=0.25,_0x499b0b[_0x20d198(0x1ff)]()[_0x20d198(0x231)](()=>{const _0x4a876b=_0x20d198;isBgmPlaying=!![],_0x5c2a55[_0x4a876b(0x244)]=_0x4a876b(0x1d7),_0x5c2a55[_0x4a876b(0x1a0)]['background']='#16a34a';})['catch'](_0x7ba406=>{const _0x409ed3=_0x20d198;console[_0x409ed3(0x1d6)](_0x409ed3(0x1b7),_0x7ba406),alert(_0x409ed3(0x25b));}));}function switchTab(_0xba8d5){const _0x2cd6fb=_0x193b46;document[_0x2cd6fb(0x1e0)]('.tab-content')['forEach'](_0x4ffbfa=>_0x4ffbfa['classList']['remove'](_0x2cd6fb(0x191))),document[_0x2cd6fb(0x1e0)](_0x2cd6fb(0x257))[_0x2cd6fb(0x210)](_0x2b3614=>_0x2b3614[_0x2cd6fb(0x243)]['remove'](_0x2cd6fb(0x191))),document[_0x2cd6fb(0x25e)](_0xba8d5)[_0x2cd6fb(0x243)][_0x2cd6fb(0x1a5)](_0x2cd6fb(0x191)),event[_0x2cd6fb(0x1b9)][_0x2cd6fb(0x243)][_0x2cd6fb(0x1a5)](_0x2cd6fb(0x191)),_0xba8d5==='simulasi'&&renderBohrAtom();}function switchSubMateri(_0x32f7be,_0x19b3ff){const _0x4c2476=_0x193b46;document[_0x4c2476(0x1e0)](_0x4c2476(0x1fe))[_0x4c2476(0x210)](_0x177d7b=>_0x177d7b[_0x4c2476(0x1a0)][_0x4c2476(0x20f)]='none'),document[_0x4c2476(0x1e0)](_0x4c2476(0x1f6))['forEach'](_0x4d239d=>_0x4d239d['classList'][_0x4c2476(0x226)]('active')),document[_0x4c2476(0x25e)](_0x32f7be)[_0x4c2476(0x1a0)][_0x4c2476(0x20f)]=_0x4c2476(0x1d0),_0x19b3ff['classList'][_0x4c2476(0x1a5)](_0x4c2476(0x191));}function toggleHint(_0x7e55be){const _0x133aff=_0x193b46,_0x140d22=document[_0x133aff(0x25e)](_0x7e55be);_0x140d22[_0x133aff(0x1a0)]['display']=_0x140d22[_0x133aff(0x1a0)]['display']===_0x133aff(0x215)?_0x133aff(0x1d0):_0x133aff(0x215);}function updateNotation(){const _0x7bed62=_0x193b46,_0x31e524=document['getElementById']('simSymbol')[_0x7bed62(0x1a7)]||'X',_0x39fc36=parseInt(document[_0x7bed62(0x25e)](_0x7bed62(0x202))[_0x7bed62(0x1a7)])||0x1,_0x599c9f=parseInt(document[_0x7bed62(0x25e)]('simA')[_0x7bed62(0x1a7)])||0x1,_0x108650=parseInt(document[_0x7bed62(0x25e)](_0x7bed62(0x214))[_0x7bed62(0x1a7)]);document[_0x7bed62(0x25e)](_0x7bed62(0x18f))[_0x7bed62(0x23b)]=_0x31e524,document[_0x7bed62(0x25e)]('dispZ')['innerText']=_0x39fc36,document[_0x7bed62(0x25e)](_0x7bed62(0x1bd))[_0x7bed62(0x23b)]=_0x599c9f;let _0x3a0da9='';if(_0x108650>0x0)_0x3a0da9=_0x108650===0x1?'+':_0x108650+'+';else{if(_0x108650<0x0)_0x3a0da9=_0x108650===-0x1?'-':Math['abs'](_0x108650)+'-';}document[_0x7bed62(0x25e)](_0x7bed62(0x18b))[_0x7bed62(0x23b)]=_0x3a0da9;const _0x5de15e=_0x39fc36,_0xd09f37=Math[_0x7bed62(0x1ab)](0x0,_0x599c9f-_0x39fc36),_0xea04e=Math[_0x7bed62(0x1ab)](0x0,_0x39fc36-_0x108650);document['getElementById'](_0x7bed62(0x1c6))[_0x7bed62(0x23b)]=_0x5de15e,document['getElementById'](_0x7bed62(0x1b5))[_0x7bed62(0x23b)]=_0xd09f37,document[_0x7bed62(0x25e)](_0x7bed62(0x22e))['innerText']=_0xea04e;let _0x59c08c='Atom\x20Netral';if(_0x108650>0x0)_0x59c08c=_0x7bed62(0x1b4)+_0x108650+')';else{if(_0x108650<0x0)_0x59c08c=_0x7bed62(0x21e)+_0x108650+')';}document[_0x7bed62(0x25e)]('resStatus')[_0x7bed62(0x23b)]=_0x59c08c;}function getBohrConfig(_0x6c132a){const _0x28ffce=_0x193b46;let _0x4dec2e=_0x6c132a,_0x126af8=[],_0x372a76=Math[_0x28ffce(0x18c)](_0x4dec2e,0x2);_0x126af8[_0x28ffce(0x1b3)](_0x372a76),_0x4dec2e-=_0x372a76;if(_0x4dec2e<=0x0)return _0x126af8;let _0x500295=Math[_0x28ffce(0x18c)](_0x4dec2e,0x8);_0x126af8[_0x28ffce(0x1b3)](_0x500295),_0x4dec2e-=_0x500295;if(_0x4dec2e<=0x0)return _0x126af8;if(_0x4dec2e<=0x8)_0x126af8[_0x28ffce(0x1b3)](_0x4dec2e),_0x4dec2e=0x0;else _0x4dec2e<0x12?(_0x126af8['push'](0x8),_0x4dec2e-=0x8):(_0x126af8[_0x28ffce(0x1b3)](0x12),_0x4dec2e-=0x12);if(_0x4dec2e<=0x0)return _0x126af8;if(_0x4dec2e<=0x8)_0x126af8[_0x28ffce(0x1b3)](_0x4dec2e),_0x4dec2e=0x0;else{_0x126af8[_0x28ffce(0x1b3)](0x8),_0x4dec2e-=0x8;if(_0x4dec2e>0x0)_0x126af8['push'](_0x4dec2e);}return _0x126af8;}function getRomanNumeral(_0x295c68){const _0x2d2008=_0x193b46,_0x3ea981=['','I','II','III','IV','V','VI',_0x2d2008(0x1cd),_0x2d2008(0x1c5)];return _0x3ea981[_0x295c68]||_0x295c68;}function loadBohrFromSelect(){const _0x46813b=_0x193b46,_0x250889=document[_0x46813b(0x25e)]('bohrSelect')['value'];document[_0x46813b(0x25e)](_0x46813b(0x259))[_0x46813b(0x1a7)]=_0x250889,renderBohrAtom();}let bohrAnimId=null,angleOffset=0x0;function renderBohrAtom(){const _0x55b670=_0x193b46,_0x5da777=parseInt(document[_0x55b670(0x25e)](_0x55b670(0x259))[_0x55b670(0x1a7)])||0x1,_0x2d371a=getBohrConfig(_0x5da777),_0xa7600c=_0x2d371a[_0x2d371a[_0x55b670(0x224)]-0x1],_0x3dc8f2=_0x2d371a[_0x55b670(0x224)];document[_0x55b670(0x25e)]('bohrConfigStr')[_0x55b670(0x23b)]=_0x2d371a['join'](',\x20'),document['getElementById'](_0x55b670(0x1b0))[_0x55b670(0x23b)]=_0xa7600c,document[_0x55b670(0x25e)](_0x55b670(0x253))['innerText']=_0x3dc8f2;let _0x7adcd2=_0x5da777===0x2?'VIIIA\x20(Duplet\x20Stabil)':getRomanNumeral(_0xa7600c)+'\x20A';document['getElementById'](_0x55b670(0x1a3))['innerText']=_0x7adcd2,document[_0x55b670(0x25e)](_0x55b670(0x1ce))[_0x55b670(0x23b)]=_0x3dc8f2;const _0x19361e=document['getElementById'](_0x55b670(0x1ca)),_0xd8f4ef=_0x19361e[_0x55b670(0x21c)]('2d');if(bohrAnimId)cancelAnimationFrame(bohrAnimId);function _0x5ecfc9(){const _0x5b730a=_0x55b670;_0xd8f4ef[_0x5b730a(0x22a)](0x0,0x0,_0x19361e[_0x5b730a(0x1d4)],_0x19361e['height']);const _0x2423c5=_0x19361e[_0x5b730a(0x1d4)]/0x2,_0x1cd3d6=_0x19361e['height']/0x2;_0xd8f4ef[_0x5b730a(0x1ad)](),_0xd8f4ef[_0x5b730a(0x1de)](_0x2423c5,_0x1cd3d6,0x18,0x0,Math['PI']*0x2),_0xd8f4ef[_0x5b730a(0x1a2)]=_0x5b730a(0x1f0),_0xd8f4ef[_0x5b730a(0x255)](),_0xd8f4ef[_0x5b730a(0x24f)]=_0x5b730a(0x1d3),_0xd8f4ef[_0x5b730a(0x1dc)]=0x3,_0xd8f4ef[_0x5b730a(0x23e)](),_0xd8f4ef[_0x5b730a(0x1a2)]=_0x5b730a(0x1f1),_0xd8f4ef['font']=_0x5b730a(0x1af),_0xd8f4ef['textAlign']=_0x5b730a(0x220),_0xd8f4ef['textBaseline']=_0x5b730a(0x1f7),_0xd8f4ef[_0x5b730a(0x208)]('+'+_0x5da777,_0x2423c5,_0x1cd3d6);const _0x4be4c8=0x2d,_0x4c6274=0x20;_0x2d371a[_0x5b730a(0x210)]((_0x23c200,_0x2dfec3)=>{const _0x28efac=_0x5b730a,_0x19a18c=_0x4be4c8+_0x2dfec3*_0x4c6274;_0xd8f4ef[_0x28efac(0x1ad)](),_0xd8f4ef[_0x28efac(0x1de)](_0x2423c5,_0x1cd3d6,_0x19a18c,0x0,Math['PI']*0x2),_0xd8f4ef[_0x28efac(0x24f)]='rgba(255,\x20255,\x20255,\x200.25)',_0xd8f4ef[_0x28efac(0x1dc)]=1.5,_0xd8f4ef[_0x28efac(0x213)]([0x4,0x4]),_0xd8f4ef['stroke'](),_0xd8f4ef[_0x28efac(0x213)]([]);const _0x9f43cc=['K','L','M','N','O'];_0xd8f4ef['fillStyle']='rgba(255,255,255,0.5)',_0xd8f4ef[_0x28efac(0x1a4)]=_0x28efac(0x1bf),_0xd8f4ef['fillText'](_0x9f43cc[_0x2dfec3]||'',_0x2423c5+_0x19a18c+0xa,_0x1cd3d6);const _0x2b3d89=(_0x2dfec3%0x2===0x0?0x1:-0x1)*(0.015/(_0x2dfec3+0x1));for(let _0x2c769e=0x0;_0x2c769e<_0x23c200;_0x2c769e++){const _0x5e9c1f=angleOffset*_0x2b3d89+_0x2c769e*0x2*Math['PI']/_0x23c200,_0x249309=_0x2423c5+_0x19a18c*Math[_0x28efac(0x1ac)](_0x5e9c1f),_0x173096=_0x1cd3d6+_0x19a18c*Math['sin'](_0x5e9c1f);_0xd8f4ef[_0x28efac(0x1ad)](),_0xd8f4ef[_0x28efac(0x1de)](_0x249309,_0x173096,0x6,0x0,Math['PI']*0x2),_0xd8f4ef[_0x28efac(0x1a2)]=_0x28efac(0x1bc),_0xd8f4ef[_0x28efac(0x255)](),_0xd8f4ef['strokeStyle']=_0x28efac(0x218),_0xd8f4ef[_0x28efac(0x1dc)]=0x2,_0xd8f4ef['stroke']();}}),angleOffset+=0x1,bohrAnimId=requestAnimationFrame(_0x5ecfc9);}_0x5ecfc9();}const SUBSHELLS=[{'name':'1s','n':0x1,'l':0x0,'cap':0x2},{'name':'2s','n':0x2,'l':0x0,'cap':0x2},{'name':'2p','n':0x2,'l':0x1,'cap':0x6},{'name':'3s','n':0x3,'l':0x0,'cap':0x2},{'name':'3p','n':0x3,'l':0x1,'cap':0x6},{'name':'4s','n':0x4,'l':0x0,'cap':0x2},{'name':'3d','n':0x3,'l':0x2,'cap':0xa},{'name':'4p','n':0x4,'l':0x1,'cap':0x6},{'name':'5s','n':0x5,'l':0x0,'cap':0x2},{'name':'4d','n':0x4,'l':0x2,'cap':0xa},{'name':'5p','n':0x5,'l':0x1,'cap':0x6},{'name':'6s','n':0x6,'l':0x0,'cap':0x2},{'name':'4f','n':0x4,'l':0x3,'cap':0xe},{'name':'5d','n':0x6,'l':0x2,'cap':0xa},{'name':'6p','n':0x6,'l':0x1,'cap':0x6},{'name':'7s','n':0x7,'l':0x0,'cap':0x2},{'name':'5f','n':0x5,'l':0x3,'cap':0xe},{'name':'6d','n':0x7,'l':0x2,'cap':0xa},{'name':'7p','n':0x7,'l':0x1,'cap':0x6}];function calculateAtom(){const _0x2ffb86=_0x193b46,_0xf38353=parseInt(document[_0x2ffb86(0x25e)](_0x2ffb86(0x256))[_0x2ffb86(0x1a7)]);if(!_0xf38353||_0xf38353<0x1||_0xf38353>0x76){alert('Silakan\x20masukkan\x20nomor\x20atom\x20antara\x201\x20hingga\x20118');return;}let _0x206c05=_0xf38353,_0x1f4f8f=[],_0x42b5bb=[],_0x50092d=null,_0x69dae3=_0xf38353===0x18,_0x16d060=_0xf38353===0x1d;for(let _0x4825ed of SUBSHELLS){if(_0x206c05<=0x0)break;let _0x968066=Math[_0x2ffb86(0x18c)](_0x206c05,_0x4825ed[_0x2ffb86(0x201)]);if(_0x69dae3&&_0x4825ed[_0x2ffb86(0x193)]==='4s')_0x968066=0x1;if(_0x69dae3&&_0x4825ed[_0x2ffb86(0x193)]==='3d')_0x968066=0x5;if(_0x16d060&&_0x4825ed['name']==='4s')_0x968066=0x1;if(_0x16d060&&_0x4825ed[_0x2ffb86(0x193)]==='3d')_0x968066=0xa;_0x1f4f8f[_0x2ffb86(0x1b3)](_0x4825ed[_0x2ffb86(0x193)]+_0x2ffb86(0x18d)+_0x968066+_0x2ffb86(0x22c));let _0x6a04a4=0x2*_0x4825ed['l']+0x1,_0x1c6610=Array(_0x6a04a4)['fill']('')[_0x2ffb86(0x1ef)](()=>[]);for(let _0x150c15=0x1;_0x150c15<=_0x968066;_0x150c15++){_0x150c15<=_0x6a04a4?_0x1c6610[_0x150c15-0x1]['push']('↑'):_0x1c6610[_0x150c15-_0x6a04a4-0x1][_0x2ffb86(0x1b3)]('↓');}_0x42b5bb[_0x2ffb86(0x1b3)]({'sub':_0x4825ed[_0x2ffb86(0x193)],'l':_0x4825ed['l'],'boxes':_0x1c6610}),_0x206c05-=_0x968066;if(_0x206c05===0x0||_0x69dae3&&_0x4825ed[_0x2ffb86(0x193)]==='3d'||_0x16d060&&_0x4825ed[_0x2ffb86(0x193)]==='3d'){let _0x148438=_0x968066<=_0x6a04a4?_0x968066-0x1:_0x968066-_0x6a04a4-0x1,_0x2f0507=-_0x4825ed['l']+_0x148438,_0x355215=_0x968066<=_0x6a04a4?_0x2ffb86(0x1e4):'-1/2';_0x50092d={'n':_0x4825ed['n'],'l':_0x4825ed['l'],'m':_0x2f0507,'s':_0x355215};if(_0x69dae3||_0x16d060)_0x206c05=0x0;}}document[_0x2ffb86(0x25e)](_0x2ffb86(0x1c2))[_0x2ffb86(0x1a0)][_0x2ffb86(0x20f)]=_0x2ffb86(0x1d0),document[_0x2ffb86(0x25e)]('configText')[_0x2ffb86(0x244)]=_0x1f4f8f[_0x2ffb86(0x1ae)]('\x20'),document[_0x2ffb86(0x25e)](_0x2ffb86(0x1c1))[_0x2ffb86(0x23b)]=_0x50092d['n'],document[_0x2ffb86(0x25e)](_0x2ffb86(0x206))['innerText']=_0x50092d['l'],document['getElementById'](_0x2ffb86(0x21b))[_0x2ffb86(0x23b)]=(_0x50092d['m']>0x0?'+':'')+_0x50092d['m'],document['getElementById'](_0x2ffb86(0x1ba))[_0x2ffb86(0x23b)]=_0x50092d['s'];let _0x4bd12a='';_0x42b5bb['forEach'](_0x19c8b6=>{const _0x32bb2e=_0x2ffb86;_0x4bd12a+='<div\x20class=\x22subshell-group\x22><div\x20class=\x22subshell-title\x22>'+_0x19c8b6[_0x32bb2e(0x1d1)]+_0x32bb2e(0x1eb),_0x19c8b6[_0x32bb2e(0x217)][_0x32bb2e(0x210)]((_0x13b868,_0x6e4d01)=>{const _0x10a74f=_0x32bb2e;let _0x234f41=-_0x19c8b6['l']+_0x6e4d01,_0x4d786d=_0x13b868[_0x10a74f(0x1ae)]('');_0x4bd12a+=_0x10a74f(0x245)+_0x4d786d+_0x10a74f(0x25f)+(_0x234f41>0x0?'+'+_0x234f41:_0x234f41)+_0x10a74f(0x21d);}),_0x4bd12a+=_0x32bb2e(0x21d);}),document[_0x2ffb86(0x25e)]('orbitalDiagram')['innerHTML']=_0x4bd12a;}const practiceAnswers={0x1:{'ans':'B','exp':'Pada\x20ion\x20Mg²⁺\x20(Z=12,\x20A=24):\x20Proton\x20=\x20Z\x20=\x2012,\x20Neutron\x20=\x20A\x20-\x20Z\x20=\x2024\x20-\x2012\x20=\x2012,\x20Elektron\x20=\x2012\x20-\x202\x20=\x2010.'},0x2:{'ans':'C','exp':'20Ca\x20memiliki\x2020\x20elektron.\x20Pengisian\x20kulit\x20Bohr:\x20K=2,\x20L=8,\x20M=8,\x20N=2.\x20Konfigurasi:\x202,\x208,\x208,\x202.'},0x3:{'ans':'C','exp':_0x193b46(0x1e7)}};function checkPractice(_0x3f1e98,_0x415d58,_0x1b3e37){const _0x2daeac=_0x193b46,_0x2ecf40=practiceAnswers[_0x3f1e98],_0x10821f=_0x1b3e37['parentElement'],_0x2ddc68=_0x10821f[_0x2daeac(0x1e0)](_0x2daeac(0x230));_0x2ddc68[_0x2daeac(0x210)](_0x40340e=>_0x40340e[_0x2daeac(0x243)]['remove'](_0x2daeac(0x236),_0x2daeac(0x200)));const _0x13c3e5=document[_0x2daeac(0x25e)]('prac-exp-'+_0x3f1e98);_0x415d58===_0x2ecf40[_0x2daeac(0x246)]?(_0x1b3e37[_0x2daeac(0x243)][_0x2daeac(0x1a5)]('correct'),_0x13c3e5[_0x2daeac(0x244)]=_0x2daeac(0x18e)+_0x2ecf40[_0x2daeac(0x1f4)],_0x13c3e5[_0x2daeac(0x1a0)][_0x2daeac(0x20f)]='block'):(_0x1b3e37[_0x2daeac(0x243)][_0x2daeac(0x1a5)]('incorrect'),_0x13c3e5[_0x2daeac(0x244)]=_0x2daeac(0x1d2)+_0x2ecf40[_0x2daeac(0x1f4)],_0x13c3e5[_0x2daeac(0x1a0)][_0x2daeac(0x20f)]=_0x2daeac(0x1d0));}const quizData=[{'q':_0x193b46(0x258),'opts':[_0x193b46(0x199),_0x193b46(0x1ea),_0x193b46(0x24d),_0x193b46(0x227)],'ans':0x1,'exp':_0x193b46(0x1e2)},{'q':_0x193b46(0x204),'opts':['15','16','31','46'],'ans':0x1,'exp':_0x193b46(0x19d)},{'q':'Ion\x20Klorida\x20<sup>35</sup><sub>17</sub>Cl\x20memiliki\x20jumlah\x20elektron\x20sebanyak...','opts':['17','18','35','16'],'ans':0x1,'exp':_0x193b46(0x1c8)},{'q':_0x193b46(0x1cf),'opts':[_0x193b46(0x203),'Isobar',_0x193b46(0x20c),_0x193b46(0x229)],'ans':0x0,'exp':_0x193b46(0x222)},{'q':_0x193b46(0x23a),'opts':[_0x193b46(0x1fa),'J.J.\x20Thomson',_0x193b46(0x1db),'Niels\x20Bohr'],'ans':0x1,'exp':_0x193b46(0x1b8)},{'q':_0x193b46(0x1e5),'opts':['2,\x208,\x209','2,\x208,\x208,\x201','2,\x209,\x208',_0x193b46(0x20d)],'ans':0x1,'exp':_0x193b46(0x24a)},{'q':_0x193b46(0x1aa),'opts':[_0x193b46(0x205),_0x193b46(0x252),_0x193b46(0x221),_0x193b46(0x194)],'ans':0x0,'exp':_0x193b46(0x260)},{'q':_0x193b46(0x1a9),'opts':[_0x193b46(0x19c),_0x193b46(0x232),'<sup>13</sup>Al\x20(2,8,3)',_0x193b46(0x248)],'ans':0x3,'exp':'${}_{16}\x5ctext{S}$\x20memiliki\x20konfigurasi\x202,\x208,\x206\x20sehingga\x20elektron\x20valensinya\x20=\x206\x20(terbanyak).'},{'q':'Kecenderungan\x20jari-jari\x20atom\x20dalam\x20satu\x20golongan\x20dari\x20atas\x20ke\x20bawah\x20pada\x20Tabel\x20Periodik\x20Unsur\x20adalah...','opts':[_0x193b46(0x1b2),_0x193b46(0x212),'Tetap\x20sama',_0x193b46(0x20a)],'ans':0x1,'exp':'Dari\x20atas\x20ke\x20bawah\x20dalam\x20satu\x20golongan,\x20jumlah\x20kulit\x20atom\x20bertambah\x20sehingga\x20jari-jari\x20atom\x20makin\x20besar.'},{'q':'Unsur\x20yang\x20memiliki\x20keelektronegatifan\x20paling\x20tinggi\x20dalam\x20SPU\x20terletak\x20di\x20bagian...','opts':[_0x193b46(0x1bb),_0x193b46(0x198),_0x193b46(0x238),'Kiri\x20Atas'],'ans':0x1,'exp':_0x193b46(0x24c)}];let userQuizAnswers=Array(quizData['length'])['fill'](null);function renderQuiz(){const _0xe3dabd=_0x193b46,_0x7c71bd=document[_0xe3dabd(0x25e)](_0xe3dabd(0x1f2)),_0x409913=document['getElementById'](_0xe3dabd(0x1ed));_0x7c71bd['innerHTML']='',_0x409913[_0xe3dabd(0x244)]='',quizData[_0xe3dabd(0x210)]((_0x5e8634,_0x5a1286)=>{const _0x5b8a1a=_0xe3dabd,_0x3d80ac=document[_0x5b8a1a(0x19e)](_0x5b8a1a(0x250));_0x3d80ac[_0x5b8a1a(0x1ec)]=_0x5b8a1a(0x21f)+(_0x5a1286===0x0?_0x5b8a1a(0x242):''),_0x3d80ac['innerText']=_0x5a1286+0x1,_0x3d80ac['id']=_0x5b8a1a(0x1ee)+_0x5a1286,_0x3d80ac['onclick']=()=>scrollToQuestion(_0x5a1286),_0x7c71bd[_0x5b8a1a(0x235)](_0x3d80ac);const _0x3804ea=document[_0x5b8a1a(0x19e)](_0x5b8a1a(0x1f3));_0x3804ea['className']=_0x5b8a1a(0x21a),_0x3804ea['id']=_0x5b8a1a(0x1e8)+_0x5a1286,_0x3804ea[_0x5b8a1a(0x1a0)]['display']=_0x5a1286===0x0?_0x5b8a1a(0x1d0):_0x5b8a1a(0x215);let _0x3068f7='';_0x5e8634[_0x5b8a1a(0x207)]['forEach']((_0x3af0c7,_0x21de79)=>{const _0x5d1247=_0x5b8a1a;_0x3068f7+=_0x5d1247(0x1f8)+_0x5a1286+',\x20'+_0x21de79+_0x5d1247(0x251)+String[_0x5d1247(0x1be)](0x41+_0x21de79)+'.\x20'+_0x3af0c7+_0x5d1247(0x234);}),_0x3804ea['innerHTML']=_0x5b8a1a(0x1fb)+(_0x5a1286+0x1)+_0x5b8a1a(0x249)+_0x5e8634['q']+_0x5b8a1a(0x25a)+_0x3068f7+_0x5b8a1a(0x228)+_0x5a1286+_0x5b8a1a(0x1a1),_0x409913['appendChild'](_0x3804ea);});}function scrollToQuestion(_0x336216){const _0x345451=_0x193b46;quizData[_0x345451(0x210)]((_0x5d2c29,_0x393426)=>{const _0x5b2541=_0x345451;document[_0x5b2541(0x25e)](_0x5b2541(0x1e8)+_0x393426)[_0x5b2541(0x1a0)]['display']=_0x393426===_0x336216?_0x5b2541(0x1d0):_0x5b2541(0x215),document[_0x5b2541(0x25e)](_0x5b2541(0x1ee)+_0x393426)[_0x5b2541(0x243)]['remove']('active');}),document[_0x345451(0x25e)]('qbtn-'+_0x336216)[_0x345451(0x243)][_0x345451(0x1a5)]('active');}function selectQuizOpt(_0x584474,_0x54930e,_0x59e4e0){const _0x5da662=_0x193b46;userQuizAnswers[_0x584474]=_0x54930e;const _0x253556=_0x59e4e0[_0x5da662(0x216)];_0x253556[_0x5da662(0x1e0)](_0x5da662(0x230))[_0x5da662(0x210)](_0x139a99=>_0x139a99[_0x5da662(0x1a0)][_0x5da662(0x1b6)]='var(--border)'),_0x59e4e0['style']['borderColor']='var(--primary)',_0x59e4e0[_0x5da662(0x1a0)][_0x5da662(0x22b)]=_0x5da662(0x190),document['getElementById'](_0x5da662(0x1ee)+_0x584474)[_0x5da662(0x243)]['add'](_0x5da662(0x24b));}function submitQuiz(){const _0x3e2756=_0x193b46;let _0x54edee=0x0;quizData[_0x3e2756(0x210)]((_0x38c450,_0x53da28)=>{const _0x237a31=_0x3e2756,_0x2eddef=document[_0x237a31(0x25e)](_0x237a31(0x1e6)+_0x53da28),_0x5be9f2=document[_0x237a31(0x25e)](_0x237a31(0x1e8)+_0x53da28);_0x5be9f2[_0x237a31(0x1a0)][_0x237a31(0x20f)]=_0x237a31(0x1d0);const _0x420644=_0x5be9f2[_0x237a31(0x1e0)](_0x237a31(0x230));_0x420644[_0x237a31(0x210)](_0x4a2a51=>_0x4a2a51[_0x237a31(0x237)]=!![]);if(userQuizAnswers[_0x53da28]===_0x38c450[_0x237a31(0x246)]){_0x54edee+=0xa;if(_0x420644[userQuizAnswers[_0x53da28]])_0x420644[userQuizAnswers[_0x53da28]][_0x237a31(0x243)][_0x237a31(0x1a5)]('correct');_0x2eddef[_0x237a31(0x244)]=_0x237a31(0x1dd)+_0x38c450[_0x237a31(0x1f4)];}else userQuizAnswers[_0x53da28]!==null&&_0x420644[userQuizAnswers[_0x53da28]]&&_0x420644[userQuizAnswers[_0x53da28]][_0x237a31(0x243)][_0x237a31(0x1a5)](_0x237a31(0x200)),_0x420644[_0x38c450['ans']]['classList'][_0x237a31(0x1a5)]('correct'),_0x2eddef[_0x237a31(0x244)]='<strong>Jawaban\x20Kurang\x20Tepat.</strong><br>'+_0x38c450[_0x237a31(0x1f4)];_0x2eddef[_0x237a31(0x1a0)][_0x237a31(0x20f)]=_0x237a31(0x1d0);}),document['getElementById'](_0x3e2756(0x1d5))[_0x3e2756(0x1a0)]['display']=_0x3e2756(0x1d0),document[_0x3e2756(0x25e)]('finalScoreDisplay')['innerText']=_0x54edee;let _0x4837a7='';if(_0x54edee>=0x50)_0x4837a7=_0x3e2756(0x25c);else{if(_0x54edee>=0x3c)_0x4837a7=_0x3e2756(0x1cb);else _0x4837a7=_0x3e2756(0x192);}document['getElementById'](_0x3e2756(0x20e))[_0x3e2756(0x23b)]=_0x4837a7,window[_0x3e2756(0x1fc)]({'top':document[_0x3e2756(0x25e)]('scoreBoard')[_0x3e2756(0x240)]-0x64,'behavior':_0x3e2756(0x219)});}function resetQuiz(){const _0xbd4de4=_0x193b46;userQuizAnswers=Array(quizData[_0xbd4de4(0x224)])[_0xbd4de4(0x255)](null),document['getElementById'](_0xbd4de4(0x1d5))['style'][_0xbd4de4(0x20f)]=_0xbd4de4(0x215),renderQuiz();}window[_0x193b46(0x1df)]=function(){updateNotation(),renderBohrAtom(),calculateAtom(),renderQuiz();},document[_0x193b46(0x1c0)](_0x193b46(0x23d),function(_0xb9cb34){_0xb9cb34['preventDefault']();}),document[_0x193b46(0x1c0)](_0x193b46(0x19f),function(_0x115ac0){const _0x28ce81=_0x193b46;_0x115ac0[_0x28ce81(0x1f5)]();}),document['addEventListener']('cut',function(_0xe83510){_0xe83510['preventDefault']();}),document[_0x193b46(0x1c0)]('dragstart',function(_0x13d1ab){const _0x240961=_0x193b46;_0x13d1ab[_0x240961(0x1f5)]();}),document[_0x193b46(0x1c0)]('keydown',function(_0x146dfa){const _0x559b91=_0x193b46;if(_0x146dfa['keyCode']===0x7b)return _0x146dfa[_0x559b91(0x1f5)](),![];if(_0x146dfa[_0x559b91(0x1a6)]&&_0x146dfa[_0x559b91(0x247)]&&(_0x146dfa['keyCode']===0x49||_0x146dfa['keyCode']===0x4a||_0x146dfa[_0x559b91(0x223)]===0x43))return _0x146dfa[_0x559b91(0x1f5)](),![];if(_0x146dfa['ctrlKey']&&_0x146dfa[_0x559b91(0x223)]===0x55)return _0x146dfa[_0x559b91(0x1f5)](),![];if(_0x146dfa[_0x559b91(0x1a6)]&&(_0x146dfa[_0x559b91(0x223)]===0x43||_0x146dfa[_0x559b91(0x223)]===0x41||_0x146dfa[_0x559b91(0x223)]===0x53))return _0x146dfa['preventDefault'](),![];}),setInterval(function(){const _0x342722=_0x193b46,_0x266862=performance[_0x342722(0x1c9)]();(function(){function _0x5644a1(){setInterval(function(){const _0x466d37=_0x1bc4;Function(_0x466d37(0x1e9))();},0x32);}try{_0x5644a1();}catch(_0x39fa98){}}());const _0x3da781=performance[_0x342722(0x1c9)]();_0x3da781-_0x266862>0x64&&window[_0x342722(0x196)][_0x342722(0x22f)]();},0x3e8);
+</script>
+</body>
+</html>
